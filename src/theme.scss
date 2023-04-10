@@ -1,0 +1,16 @@
+body {
+  background-color: var(--surface-b) !important
+}
+
+.p-paginator-first,
+.p-paginator-prev,
+.p-paginator-next,
+.p-paginator-last,
+.p-paginator-page {
+  border-radius: 50% !important;
+  box-shadow: none !important;
+}
+
+.p-paginator {
+  border: none;
+}
