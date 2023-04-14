@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
 import {OidcSecurityService} from "angular-auth-oidc-client";
 import {Router} from "@angular/router";
+import {NavbarService} from "../../shared/services/navbar/navbar.service";
 
 @Component({
     selector: 'app-login',
@@ -9,11 +10,13 @@ import {Router} from "@angular/router";
 })
 export class LoginComponent {
     constructor(private oidcSecurityService: OidcSecurityService,
+                private navbarService: NavbarService,
                 private router: Router) {
         this.oidcSecurityService.checkAuth().subscribe((auth) => {
             if (auth.isAuthenticated)
                 this.router.navigate(['/']);
         });
+        this.navbarService.setNavbarVisibility(false);
     }
 
     public login() {

@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {OidcSecurityService} from "angular-auth-oidc-client";
 import {Router} from "@angular/router";
+import {NavbarService} from "./shared/services/navbar/navbar.service";
 
 @Component({
     selector: 'app-root',
@@ -8,9 +9,14 @@ import {Router} from "@angular/router";
     styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
+    public navbarVisible: boolean = true;
 
-    constructor(private oidcSecurityService: OidcSecurityService,
+    constructor(public oidcSecurityService: OidcSecurityService,
+                private navbarService: NavbarService,
                 private router: Router) {
+        this.navbarService.navbarVisibility$.subscribe((visible: boolean) => {
+            this.navbarVisible = visible;
+        });
     }
 
     public logout() {

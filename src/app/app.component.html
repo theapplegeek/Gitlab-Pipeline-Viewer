@@ -1,1 +1,38 @@
-<router-outlet></router-outlet>
+<div class="tw-flex tw-flex-col tw-h-screen tw-w-screen">
+    <div *ngIf="navbarVisible" class="tw-py-2 tw-px-3 navbar">
+        <div class="tw-flex tw-flex-col">
+            <div class="tw-flex tw-flex-row tw-justify-between">
+                <div class="tw-flex tw-items-center">
+                    <img src="assets/logo-custom.svg" alt="logo" style="height: 33px" class="tw-mr-2"/>
+                    <span class="f-header p-component">Gitlab Pipeline Viewer</span>
+                </div>
+                <div>
+                    <p-button icon="pi pi-user" styleClass="p-button-rounded p-button-text no-box-shadow"
+                              (click)="profile.toggle($event)"/>
+                    <p-overlayPanel #profile [showCloseIcon]="false" [dismissable]="true">
+                        <ng-template pTemplate="content">
+                            <div class="tw-flex tw-flex-col" style="min-width: 360px">
+                                <div class="tw-flex tw-flex-row tw-items-center">
+                                    <p-avatar [image]="(oidcSecurityService.getUserData() | async)?.picture" class="tw-mr-3" size="large" shape="circle"/>
+                                    <div class="tw-flex tw-flex-col tw-justify-center">
+                                        <span class="f-profile-name tw-whitespace-nowrap">{{ (oidcSecurityService.getUserData() | async)?.nickname }}</span>
+                                        <span class="tw-whitespace-nowrap">{{ (oidcSecurityService.getUserData() | async)?.email }}</span>
+                                    </div>
+                                </div>
+                                <p-divider/>
+                                <div>
+                                    <p-button icon="pi pi-sign-out" label="Logout"
+                                              styleClass="p-button-rounded p-button-raised p-button-danger no-box-shadow tw-w-full"
+                                              (click)="logout()"/>
+                                </div>
+                            </div>
+                        </ng-template>
+                    </p-overlayPanel>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tw-flex-grow tw-@container/main">
+        <router-outlet></router-outlet>
+    </div>
+</div>
