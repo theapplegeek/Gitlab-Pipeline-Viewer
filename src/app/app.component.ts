@@ -1,5 +1,5 @@
-import {Component, OnInit} from '@angular/core';
-import {OidcSecurityService} from "angular-auth-oidc-client";
+import {Component} from '@angular/core';
+import {LoginResponse, OidcSecurityService} from "angular-auth-oidc-client";
 import {Router} from "@angular/router";
 import {NavbarService} from "./shared/services/navbar/navbar.service";
 
@@ -17,6 +17,7 @@ export class AppComponent {
         this.navbarService.navbarVisibility$.subscribe((visible: boolean) => {
             this.navbarVisible = visible;
         });
+        this.oidcSecurityService.checkAuth().subscribe();
     }
 
     public logout() {
