@@ -6,6 +6,8 @@ import {SharedModule} from "./shared/shared.module";
 import {LoginComponent} from './components/login/login.component';
 import {NgOptimizedImage} from "@angular/common";
 import {AuthConfigModule} from './auth/auth-config.module';
+import {BrowserModule} from "@angular/platform-browser";
+import {BrowserAnimationsModule} from "@angular/platform-browser/animations";
 
 @NgModule({
     declarations: [
@@ -13,6 +15,8 @@ import {AuthConfigModule} from './auth/auth-config.module';
         LoginComponent,
     ],
     imports: [
+        BrowserModule,
+        BrowserAnimationsModule,
         SharedModule,
         AppRoutingModule,
         NgOptimizedImage,

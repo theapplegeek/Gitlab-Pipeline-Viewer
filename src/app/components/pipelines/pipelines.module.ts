@@ -1,17 +1,20 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 
-import { PipelinesRoutingModule } from './pipelines-routing.module';
-import { PipelinesComponent } from './pipelines.component';
+import {PipelinesRoutingModule} from './pipelines-routing.module';
+import {PipelinesComponent} from './pipelines.component';
+import {SharedModule} from "../../shared/shared.module";
 
 
 @NgModule({
-  declarations: [
-    PipelinesComponent
-  ],
-  imports: [
-    CommonModule,
-    PipelinesRoutingModule
-  ]
+    declarations: [
+        PipelinesComponent
+    ],
+    imports: [
+        CommonModule,
+        PipelinesRoutingModule,
+        SharedModule
+    ]
 })
-export class PipelinesModule { }
+export class PipelinesModule {
+}
