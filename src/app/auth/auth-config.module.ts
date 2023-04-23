@@ -13,9 +13,8 @@ import {environment} from "../../environments/environment";
             clientId: environment.clientId,
             scope: environment.scope, // 'openid profile offline_access ' + your scopes
             responseType: 'code',
-            silentRenew: true,
+            silentRenew: false,
             useRefreshToken: true,
-            renewTimeBeforeTokenExpiresInSeconds: 30,
         }
     })],
     exports: [AuthModule],

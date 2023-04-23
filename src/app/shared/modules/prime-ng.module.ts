@@ -5,6 +5,9 @@ import {CardModule} from "primeng/card";
 import {DividerModule} from "primeng/divider";
 import {AvatarModule} from "primeng/avatar";
 import {OverlayPanelModule} from "primeng/overlaypanel";
+import {InputTextModule} from "primeng/inputtext";
+import {DropdownModule} from "primeng/dropdown";
+import {AccordionModule} from "primeng/accordion";
 
 
 @NgModule({
@@ -16,6 +19,9 @@ import {OverlayPanelModule} from "primeng/overlaypanel";
         OverlayPanelModule,
         AvatarModule,
         DividerModule,
+        InputTextModule,
+        DropdownModule,
+        AccordionModule,
     ],
     exports: [
         ButtonModule,
@@ -23,6 +29,9 @@ import {OverlayPanelModule} from "primeng/overlaypanel";
         OverlayPanelModule,
         AvatarModule,
         DividerModule,
+        InputTextModule,
+        DropdownModule,
+        AccordionModule,
     ]
 })
 export class PrimeNgModule {

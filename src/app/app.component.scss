@@ -1,3 +1,7 @@
 .navbar {
-  background-color: var(--surface-a);
+  background-color: var(--surface-e);
+  position: sticky;
+  top: 0;
+  width: 100%;
+  z-index: 100;
 }

@@ -17,7 +17,15 @@ export class AppComponent {
         this.navbarService.navbarVisibility$.subscribe((visible: boolean) => {
             this.navbarVisible = visible;
         });
-        this.oidcSecurityService.checkAuth().subscribe();
+        this.oidcSecurityService.checkAuth()
+            .subscribe({
+                next: (auth) => {
+                    console.log('is authenticated', auth);
+                },
+                error: (err) => {
+                    console.log('is authenticated error', err);
+                }
+            });
     }
 
     public logout() {
