@@ -11,7 +11,7 @@
                               (click)="profile.toggle($event)"/>
                     <p-overlayPanel #profile [showCloseIcon]="false" [dismissable]="true">
                         <ng-template pTemplate="content">
-                            <div class="tw-flex tw-flex-col" style="min-width: 360px">
+                            <div class="tw-flex tw-flex-col overlay">
                                 <div class="tw-flex tw-flex-row tw-items-center">
                                     <p-avatar [image]="(oidcSecurityService.getUserData() | async)?.picture" class="tw-mr-3" size="large" shape="circle"/>
                                     <div class="tw-flex tw-flex-col tw-justify-center">

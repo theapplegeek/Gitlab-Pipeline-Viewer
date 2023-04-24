@@ -5,3 +5,13 @@
   width: 100%;
   z-index: 100;
 }
+
+.overlay {
+  min-width: 22rem;
+}
+
+@media screen and (max-width: 768px) {
+  .overlay {
+    min-width: 0;
+  }
+}
