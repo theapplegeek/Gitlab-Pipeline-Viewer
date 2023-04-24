@@ -8,6 +8,7 @@ import {OverlayPanelModule} from "primeng/overlaypanel";
 import {InputTextModule} from "primeng/inputtext";
 import {DropdownModule} from "primeng/dropdown";
 import {AccordionModule} from "primeng/accordion";
+import {SkeletonModule} from "primeng/skeleton";
 
 
 @NgModule({
@@ -22,6 +23,7 @@ import {AccordionModule} from "primeng/accordion";
         InputTextModule,
         DropdownModule,
         AccordionModule,
+        SkeletonModule,
     ],
     exports: [
         ButtonModule,
@@ -32,6 +34,7 @@ import {AccordionModule} from "primeng/accordion";
         InputTextModule,
         DropdownModule,
         AccordionModule,
+        SkeletonModule,
     ]
 })
 export class PrimeNgModule {

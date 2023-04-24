@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {LoginResponse, OidcSecurityService} from "angular-auth-oidc-client";
+import {OidcSecurityService} from "angular-auth-oidc-client";
 import {Router} from "@angular/router";
 import {NavbarService} from "./shared/services/navbar/navbar.service";
 
@@ -17,19 +17,11 @@ export class AppComponent {
         this.navbarService.navbarVisibility$.subscribe((visible: boolean) => {
             this.navbarVisible = visible;
         });
-        this.oidcSecurityService.checkAuth()
-            .subscribe({
-                next: (auth) => {
-                    console.log('is authenticated', auth);
-                },
-                error: (err) => {
-                    console.log('is authenticated error', err);
-                }
-            });
+        this.oidcSecurityService.checkAuth().subscribe();
     }
 
     public logout() {
-        this.oidcSecurityService.logoffAndRevokeTokens('gitlab').subscribe((result) => {
+        this.oidcSecurityService.logoffAndRevokeTokens('gitlab').subscribe(() => {
             this.oidcSecurityService.logoffLocal();
             this.router.navigate(['/login']);
         });

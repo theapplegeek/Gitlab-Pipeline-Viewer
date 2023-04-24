@@ -76,7 +76,7 @@ export class AuthInterceptor implements HttpInterceptor {
                 }),
                 catchError((error) => {
                     this.refreshTokenInProgress = false;
-                    this.oidcSecurityService.logoffAndRevokeTokens('gitlab').subscribe((result) => {
+                    this.oidcSecurityService.logoffAndRevokeTokens('gitlab').subscribe(() => {
                         this.oidcSecurityService.logoffLocal();
                         this.router.navigate(['/login']);
                     });

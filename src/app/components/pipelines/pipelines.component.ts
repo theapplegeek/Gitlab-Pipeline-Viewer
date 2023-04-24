@@ -16,6 +16,7 @@ import {Subscription} from "rxjs";
 export class PipelinesComponent implements OnDestroy {
 
     private subs = new Subscription();
+    public isLoading: boolean = false;
 
     public statusList: PipelineStatusEnum[] = [
         PipelineStatusEnum.CREATED,
@@ -41,6 +42,7 @@ export class PipelinesComponent implements OnDestroy {
     }
 
     public getProjectsAndPipelines() {
+        this.isLoading = true;
         let data: { search?: string, status?: PipelineStatusEnum } = {};
         if (this.search !== "") data.search = this.search;
         if (this.selectedStatus) data.status = this.selectedStatus;
@@ -48,9 +50,12 @@ export class PipelinesComponent implements OnDestroy {
         this.subs.add(this.getProjectsAndPipelinesService
             .watch({...data})
             .valueChanges
-            .subscribe((result) => {
-                let projects = {...result.data.projects};
-                this.projects = projects.nodes.filter((pipeline) => pipeline.pipelines.nodes.length > 0);
+            .subscribe({
+                next: (result) => {
+                    let projects = {...result.data.projects};
+                    this.projects = projects.nodes.filter((pipeline) => pipeline.pipelines.nodes.length > 0);
+                    this.isLoading = false;
+                }, error: () => this.isLoading = false
             })
         );
     }
