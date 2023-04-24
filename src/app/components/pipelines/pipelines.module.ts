@@ -5,11 +5,13 @@ import {PipelinesRoutingModule} from './pipelines-routing.module';
 import {PipelinesComponent} from './pipelines.component';
 import {SharedModule} from "../../shared/shared.module";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import { PipelineDetailComponent } from './components/pipeline-detail/pipeline-detail.component';
 
 
 @NgModule({
     declarations: [
-        PipelinesComponent
+        PipelinesComponent,
+        PipelineDetailComponent
     ],
     imports: [
         CommonModule,

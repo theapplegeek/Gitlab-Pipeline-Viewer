@@ -1,0 +1,37 @@
+<div class="p-component tw-mx-2 tw-grid tw-grid-cols-10">
+    <div class="tw-col-span-2">
+        <div class="tw-flex tw-flex-col">
+            <div class="tw-flex tw-items-center">
+                <app-pipeline-status-icon class="tw-me-2" [size]="16"
+                                          [status]="pipeline.status.toLowerCase()"></app-pipeline-status-icon>
+                <span>{{pipeline.status}}</span>
+            </div>
+            <div class="tw-flex tw-items-center">
+                <img src="assets/gitlab/clock.svg" alt="clock" class="tw-me-2"/>
+                <span>{{pipeline.duration}} s</span>
+            </div>
+            <div class="tw-flex tw-items-center">
+                <img src="assets/gitlab/calendar.svg" alt="clock" class="tw-me-2"/>
+                <span>{{getTimePassed(pipeline.createdAt)}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="tw-col-span-6">
+        <div class="tw-flex tw-items-center">
+            <img src="assets/gitlab/comment-dots.svg" alt="commit comment icon" class="tw-me-2">
+            <span>{{pipeline.commit.message}}</span>
+        </div>
+        <div class="tw-flex tw-items-center">
+            <img src="assets/gitlab/user.svg" alt="user icon" class="tw-me-2">
+            <span>{{pipeline.commit.author.username}}</span>
+        </div>
+        <div class="tw-flex tw-items-center">
+            <img src="assets/gitlab/commit.svg" alt="commit icon" class="tw-me-2">
+            <a [href]="pipeline.commit.webUrl" target="_blank">{{pipeline.commit.shortId}}</a>
+        </div>
+    </div>
+    <div class="tw-col-span-2 tw-flex tw-justify-center tw-items-center">
+        <p-button label="Details" icon="pi pi-external-link" styleClass="p-button-outlined" (click)="openPipelineInNewTab(pipeline.path)"></p-button>
+    </div>
+</div>
+<p-divider *ngIf="showDivider"></p-divider>

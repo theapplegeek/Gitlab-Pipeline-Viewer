@@ -16,6 +16,7 @@ export interface CommitAuthor {
 
 export interface Commit {
     webUrl: string;
+    shortId: string;
     message: string;
     author: CommitAuthor;
 }
@@ -25,7 +26,7 @@ export interface PipelineNode {
     active: boolean;
     status: string;
     duration: number;
-    createdAt: Date;
+    createdAt: string;
     commit: Commit;
 }
 
@@ -63,6 +64,7 @@ export class GetProjectsAndPipelinesService extends Query<GetProjectsData>{
                 commit {
                   webUrl
                   message
+                  shortId
                   author {
                     username
                   }
