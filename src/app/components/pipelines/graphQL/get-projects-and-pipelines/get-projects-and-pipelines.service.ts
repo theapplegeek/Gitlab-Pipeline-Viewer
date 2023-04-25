@@ -10,15 +10,11 @@ export enum PipelineStatusEnum {
     CANCELED = 'CANCELED',
 }
 
-export interface CommitAuthor {
-    username: string;
-}
-
 export interface Commit {
     webUrl: string;
     shortId: string;
     message: string;
-    author: CommitAuthor;
+    authorName: string;
 }
 
 export interface PipelineNode {
@@ -65,9 +61,7 @@ export class GetProjectsAndPipelinesService extends Query<GetProjectsData>{
                   webUrl
                   message
                   shortId
-                  author {
-                    username
-                  }
+                  authorName
                 }
               }
             }

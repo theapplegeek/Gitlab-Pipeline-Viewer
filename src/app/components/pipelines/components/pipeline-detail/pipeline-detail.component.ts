@@ -11,10 +11,6 @@ export class PipelineDetailComponent {
   @Input() public pipeline!: PipelineNode;
   @Input() public showDivider = true;
 
-  public get pipelineWebPath(): string {
-    return `${environment.gitlabUrl}${this.pipeline?.path}`
-  }
-
   public getTimePassed(createdAt: string): string {
     const difference = new Date().getTime() - new Date(createdAt).getTime();
     const seconds = Math.floor(difference / 1000);
