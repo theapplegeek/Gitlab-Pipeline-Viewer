@@ -1,5 +1,5 @@
 export const environment = {
-    production: false,
+    production: true,
     clientId: 'Your client id',
     scope: 'api openid profile email',
     gitlabGraphQlUrl: 'https://gitlab.com/api/graphql',

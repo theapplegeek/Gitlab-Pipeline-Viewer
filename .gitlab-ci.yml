@@ -1,0 +1,18 @@
+variables:
+  VERSION: 0.1-alpha
+
+stages:
+  - build
+
+build:
+  stage: build
+  image: docker:stable
+  services:
+    - docker:dind
+  before_script:
+    - echo $DOCKER_HUB_PASSWORD | docker login -u $DOCKER_HUB_USER --password-stdin $DOCKER_HUB_REGISTRY
+  script:
+    - docker build -t $DOCKER_HUB_REGISTRY:$VERSION . --build-arg CLIENT_ID=$GITLAB_CLIENT_ID
+    - docker push $DOCKER_HUB_REGISTRY:$VERSION
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
