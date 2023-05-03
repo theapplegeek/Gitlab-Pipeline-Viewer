@@ -1,7 +1,11 @@
 variables:
   VERSION: 0.1-alpha
 
+include:
+  - template: Jobs/SAST-IaC.gitlab-ci.yml
+
 stages:
+  - test
   - build
 
 build:
