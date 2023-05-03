@@ -5,7 +5,7 @@ COPY package.json .
 COPY package-lock.json .
 RUN npm install
 COPY . .
-RUN sed -i '' "s/clientId:.*/clientId: '$CLIENT_ID',/" src/environments/environment.ts
+RUN sed -i "s/clientId:.*/clientId: '$CLIENT_ID',/" /app/src/environments/environment.ts
 RUN npm run build
 
 FROM nginx:1.21.5-alpine
