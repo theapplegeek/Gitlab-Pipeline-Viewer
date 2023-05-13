@@ -18,16 +18,16 @@
     "@angular/platform-browser": "^15.1.0",
     "@angular/platform-browser-dynamic": "^15.1.0",
     "@angular/router": "^15.1.0",
+    "@apollo/client": "^3.7.14",
     "@tailwindcss/container-queries": "^0.1.1",
     "angular-auth-oidc-client": "15.0.3",
     "apollo-angular": "^5.0.0",
+    "graphql": "^16",
     "primeicons": "^6.0.1",
-    "primeng": "^15.3.0",
+    "primeng": "^15.4.2-lts",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
-    "zone.js": "~0.12.0",
-    "@apollo/client": "^3.7.14",
-    "graphql": "^16"
+    "zone.js": "~0.12.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^15.1.4",
