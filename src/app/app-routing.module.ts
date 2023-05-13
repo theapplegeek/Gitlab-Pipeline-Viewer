@@ -11,6 +11,7 @@ const routes: Routes = [
     },
     {path: 'login', component: LoginComponent},
     {path: '', redirectTo: 'pipelines', pathMatch: 'full'},
+    {path: '**', redirectTo: 'pipelines', pathMatch: 'full'},
 ];
 
 @NgModule({
