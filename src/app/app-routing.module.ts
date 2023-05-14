@@ -6,7 +6,7 @@ import {AuthGuard} from "./shared/guards/auth.guard";
 const routes: Routes = [
     {
         path: 'pipelines',
-        loadChildren: () => import('./components/pipelines/pipelines.module').then(m => m.PipelinesModule),
+        loadChildren: () => import('./components/pipelines/pipelines-routing.module').then(m => m.PipelinesRoutingModule),
         canActivate: [AuthGuard]
     },
     {path: 'login', component: LoginComponent},

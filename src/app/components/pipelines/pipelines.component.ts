@@ -7,11 +7,23 @@ import {
     ProjectNode
 } from "./graphQL/get-projects-and-pipelines.service";
 import {Subscription} from "rxjs";
+import {PipelineDetailComponent} from './components/pipeline-detail/pipeline-detail.component';
+import {PipelineStatusIconComponent} from '../../shared/components/pipeline-status-icon/pipeline-status-icon.component';
+import {AccordionModule} from 'primeng/accordion';
+import {SkeletonModule} from 'primeng/skeleton';
+import {NgIf, NgFor, DatePipe} from '@angular/common';
+import {ButtonModule} from 'primeng/button';
+import {DropdownModule} from 'primeng/dropdown';
+import {InputTextModule} from 'primeng/inputtext';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {SharedModule} from "../../shared/shared.module";
 
 @Component({
     selector: 'app-pipelines',
     templateUrl: './pipelines.component.html',
-    styleUrls: ['./pipelines.component.scss']
+    styleUrls: ['./pipelines.component.scss'],
+    standalone: true,
+    imports: [FormsModule, ReactiveFormsModule, InputTextModule, DropdownModule, ButtonModule, NgIf, NgFor, SkeletonModule, AccordionModule, SharedModule, PipelineStatusIconComponent, PipelineDetailComponent, DatePipe]
 })
 export class PipelinesComponent implements OnDestroy {
 
