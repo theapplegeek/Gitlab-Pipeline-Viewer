@@ -1,4 +1,4 @@
-FROM node:16.13.1-alpine as build
+FROM node:18.10-alpine as build
 ARG CLIENT_ID
 WORKDIR /app
 COPY package.json .
