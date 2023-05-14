@@ -1,60 +1,6 @@
 <div class="p-component tw-px-2 @3xl/main:tw-px-16 tw-h-full tw-flex tw-flex-col">
-    <p class="f-header tw-mt-5 tw-mb-10">Pipelines</p>
-    <div class="tw-grid tw-grid-cols-8">
-        <span (keyup.enter)="getProjectsAndPipelines()"
-            class="tw-col-span-8 @3xl/main:tw-col-span-5
-                     tw-me-0 @3xl/main:tw-me-2
-                     tw-mb-6 @3xl/main:tw-mb-0
-                     p-float-label p-input-icon-left">
-            <i class="pi pi-search"></i>
-            <input class="tw-w-full" pInputText id="search" [(ngModel)]="search"/>
-            <label htmlFor="search">Project name or group name</label>
-        </span>
-        <span class="tw-me-0 @3xl/main:tw-me-2
-                     tw-col-span-8 @3xl/main:tw-col-span-2
-                     tw-mb-6 @3xl/main:tw-mb-0
-                     p-float-label">
-            <p-dropdown styleClass="tw-w-full" [options]="statusList" [(ngModel)]="selectedStatus"
-                        id="status-select" placeholder="Select status" [showClear]="true"
-                        inputId="status-select"/>
-            <label for="status-select">Pipeline status</label>
-        </span>
-        <span class="tw-col-span-8 @3xl/main:tw-col-span-1">
-            <p-button styleClass="tw-w-full" icon="pi pi-search" label="Search"
-                      (click)="getProjectsAndPipelines()"></p-button>
-        </span>
-    </div>
-    <div class="tw-mt-8 tw-mb-5">
-        <div *ngIf="isLoading">
-            <p-skeleton *ngFor="let i of [1,1,1,1,1]" height="4.125rem" width="100%" styleClass="tw-mb-3"></p-skeleton>
-        </div>
-        <p-accordion [multiple]="true" *ngIf="projects.length > 0 && !isLoading">
-            <p-accordionTab class="tw-mb-3" *ngFor="let project of projects">
-                <ng-template pTemplate="header">
-                    <span class="tw-me-auto tw-flex tw-items-center">
-                        <img class="tw-me-2" src="assets/gitlab/project.svg" alt="Gitlab project icon"/>
-                        <span>{{project.name}}</span>
-                    </span>
-                    <span class="tw-flex tw-items-center">
-                        <app-pipeline-status-icon class="tw-me-4 tw-flex tw-items-center" [size]="24"
-                                                  [status]="project.pipelines.nodes[0].status"/>
-                        <span class="tw-hidden @3xl/main:tw-inline">Last update: {{project.lastActivityAt | date: 'dd/MM/yyyy mm:hh'}}</span>
-                    </span>
-                </ng-template>
-                <ng-template pTemplate="content">
-                    <app-pipeline-detail
-                            *ngFor="let pipeline of project.pipelines.nodes, let i = index"
-                            [pipeline]="pipeline"
-                            [showDivider]="i < project.pipelines.nodes.length - 1"
-                    />
-                </ng-template>
-            </p-accordionTab>
-        </p-accordion>
-    </div>
-    <div class="tw-flex-grow tw-my-5" *ngIf="projects.length == 0 && !isLoading">
-        <div class="tw-flex tw-justify-center tw-items-center tw-flex-col tw-h-full">
-            <img src="assets/gitlab/empty-projects.svg" alt="Empty projects icon"/>
-            <p class="tw-text-gray-200 tw-mt-2">There are no projects available to be displayed here.</p>
-        </div>
-    </div>
+    <p class="f-header tw-mt-5 tw-mb-8">Pipelines</p>
+    <app-pipeline-search-bar/>
+    <app-pipeline-real-refresh-toggle/>
+    <app-pipeline-list/>
 </div>

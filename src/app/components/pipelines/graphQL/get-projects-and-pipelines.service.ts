@@ -27,6 +27,7 @@ export interface PipelineNode {
 }
 
 export interface ProjectNode {
+    id: string;
     name: string;
     lastActivityAt: Date;
     pipelines: {
@@ -48,6 +49,7 @@ export class GetProjectsAndPipelinesService extends Query<GetProjectsData>{
     query GetProjects($search: String, $status: PipelineStatusEnum) {
         projects(membership: true, search: $search, searchNamespaces: true) {
           nodes {
+            id
             name
             lastActivityAt
             pipelines(first: 5, status: $status) {
