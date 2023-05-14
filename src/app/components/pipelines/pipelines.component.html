@@ -1,7 +1,8 @@
 <div class="p-component tw-px-2 @3xl/main:tw-px-16 tw-h-full tw-flex tw-flex-col">
     <p class="f-header tw-mt-5 tw-mb-10">Pipelines</p>
     <div class="tw-grid tw-grid-cols-8">
-        <span class="tw-col-span-8 @3xl/main:tw-col-span-5
+        <span (keyup.enter)="getProjectsAndPipelines()"
+            class="tw-col-span-8 @3xl/main:tw-col-span-5
                      tw-me-0 @3xl/main:tw-me-2
                      tw-mb-6 @3xl/main:tw-mb-0
                      p-float-label p-input-icon-left">
@@ -15,7 +16,7 @@
                      p-float-label">
             <p-dropdown styleClass="tw-w-full" [options]="statusList" [(ngModel)]="selectedStatus"
                         id="status-select" placeholder="Select status" [showClear]="true"
-                        inputId="status-select"></p-dropdown>
+                        inputId="status-select"/>
             <label for="status-select">Pipeline status</label>
         </span>
         <span class="tw-col-span-8 @3xl/main:tw-col-span-1">
@@ -36,7 +37,7 @@
                     </span>
                     <span class="tw-flex tw-items-center">
                         <app-pipeline-status-icon class="tw-me-4 tw-flex tw-items-center" [size]="24"
-                                                  [status]="project.pipelines.nodes[0].status"></app-pipeline-status-icon>
+                                                  [status]="project.pipelines.nodes[0].status"/>
                         <span class="tw-hidden @3xl/main:tw-inline">Last update: {{project.lastActivityAt | date: 'dd/MM/yyyy mm:hh'}}</span>
                     </span>
                 </ng-template>
@@ -45,7 +46,7 @@
                             *ngFor="let pipeline of project.pipelines.nodes, let i = index"
                             [pipeline]="pipeline"
                             [showDivider]="i < project.pipelines.nodes.length - 1"
-                    ></app-pipeline-detail>
+                    />
                 </ng-template>
             </p-accordionTab>
         </p-accordion>
