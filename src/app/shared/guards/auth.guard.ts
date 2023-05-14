@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import { ActivatedRouteSnapshot, Router, RouterStateSnapshot, UrlTree } from '@angular/router';
+import {ActivatedRouteSnapshot, Router, RouterStateSnapshot, UrlTree} from '@angular/router';
 import {map, Observable} from 'rxjs';
-import {LoginResponse, OidcSecurityService} from "angular-auth-oidc-client";
+import {OidcSecurityService} from "angular-auth-oidc-client";
 import {NavbarService} from "../services/navbar.service";
 
 @Injectable({
@@ -24,7 +24,7 @@ export class AuthGuard  {
                 if (!isAuthenticated)
                     this.router.navigate(['/login']);
                 else
-                    this.navbarService.setNavbarVisibility(true);
+                    this.navbarService.navbarVisibility.set(true);
                 return isAuthenticated;
             })
         );

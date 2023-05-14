@@ -16,14 +16,14 @@ import {DividerModule} from "primeng/divider";
     imports: [NgIf, RouterOutlet, AsyncPipe, ButtonModule, OverlayPanelModule, AvatarModule, DividerModule]
 })
 export class AppComponent {
-    public navbarVisible: boolean = true;
+
+    public get navbarVisible(): boolean {
+        return this.navbarService.navbarVisibility();
+    }
 
     constructor(public oidcSecurityService: OidcSecurityService,
                 private navbarService: NavbarService,
                 private router: Router) {
-        this.navbarService.navbarVisibility$.subscribe((visible: boolean) => {
-            this.navbarVisible = visible;
-        });
         this.oidcSecurityService.checkAuth().subscribe();
     }
 

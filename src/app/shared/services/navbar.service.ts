@@ -1,16 +1,11 @@
-import {Injectable} from '@angular/core';
-import {BehaviorSubject} from "rxjs";
+import {Injectable, signal} from '@angular/core';
 
 @Injectable({
     providedIn: 'root'
 })
 export class NavbarService {
-    public navbarVisibility$ = new BehaviorSubject<boolean>(true);
+    public navbarVisibility = signal<boolean>(true);
 
     constructor() {
-    }
-
-    public setNavbarVisibility(visible: boolean) {
-        this.navbarVisibility$.next(visible);
     }
 }

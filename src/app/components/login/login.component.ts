@@ -21,7 +21,7 @@ export class LoginComponent {
             if (auth.isAuthenticated)
                 this.router.navigate(['/']);
         });
-        this.navbarService.setNavbarVisibility(false);
+        this.navbarService.navbarVisibility.set(false);
     }
 
     public login() {
