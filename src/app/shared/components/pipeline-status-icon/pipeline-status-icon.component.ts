@@ -7,7 +7,7 @@ import {Component, Input} from '@angular/core';
     standalone: true
 })
 export class PipelineStatusIconComponent {
-  @Input() public status?: string;
+  @Input({required: true}) public status!: string;
   @Input() public size: number = 16
 
   public get iconSrc(): string {

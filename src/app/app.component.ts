@@ -2,7 +2,7 @@ import {Component} from '@angular/core';
 import {OidcSecurityService} from "angular-auth-oidc-client";
 import {Router, RouterOutlet} from "@angular/router";
 import {NavbarService} from "./shared/services/navbar.service";
-import {NgIf, AsyncPipe} from '@angular/common';
+import {CommonModule} from '@angular/common';
 import {ButtonModule} from "primeng/button";
 import {OverlayPanelModule} from "primeng/overlaypanel";
 import {AvatarModule} from "primeng/avatar";
@@ -13,7 +13,7 @@ import {DividerModule} from "primeng/divider";
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
     standalone: true,
-    imports: [NgIf, RouterOutlet, AsyncPipe, ButtonModule, OverlayPanelModule, AvatarModule, DividerModule]
+    imports: [CommonModule, RouterOutlet, ButtonModule, OverlayPanelModule, AvatarModule, DividerModule]
 })
 export class AppComponent {
 

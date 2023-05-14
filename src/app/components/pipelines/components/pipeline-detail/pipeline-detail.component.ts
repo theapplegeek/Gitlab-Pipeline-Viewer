@@ -2,18 +2,18 @@ import {Component, Input} from '@angular/core';
 import {PipelineNode} from "../../graphQL/get-projects-and-pipelines.service";
 import {environment} from "../../../../../environments/environment";
 import {DividerModule} from 'primeng/divider';
-import {NgIf} from '@angular/common';
+import {CommonModule} from '@angular/common';
 import {ButtonModule} from 'primeng/button';
 import {
     PipelineStatusIconComponent
-} from '../../../../shared/components/pipeline-status-icon/pipeline-status-icon.component';
+} from "../../../../shared/components/pipeline-status-icon/pipeline-status-icon.component";
 
 @Component({
     selector: 'app-pipeline-detail',
     templateUrl: './pipeline-detail.component.html',
     styleUrls: ['./pipeline-detail.component.scss'],
     standalone: true,
-    imports: [PipelineStatusIconComponent, ButtonModule, NgIf, DividerModule]
+    imports: [CommonModule, ButtonModule, DividerModule, PipelineStatusIconComponent]
 })
 export class PipelineDetailComponent {
     @Input({required: true}) public pipeline!: PipelineNode;
