@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {OidcSecurityService} from "angular-auth-oidc-client";
 import {Router} from "@angular/router";
-import {NavbarService} from "../../shared/services/navbar/navbar.service";
+import {NavbarService} from "../../shared/services/navbar.service";
 
 @Component({
     selector: 'app-login',

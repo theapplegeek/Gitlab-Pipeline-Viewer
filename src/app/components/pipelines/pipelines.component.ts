@@ -5,7 +5,7 @@ import {
     GetProjectsAndPipelinesService,
     PipelineStatusEnum,
     ProjectNode
-} from "./graphQL/get-projects-and-pipelines/get-projects-and-pipelines.service";
+} from "./graphQL/get-projects-and-pipelines.service";
 import {Subscription} from "rxjs";
 
 @Component({

@@ -1,5 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {PipelineNode} from "../../graphQL/get-projects-and-pipelines/get-projects-and-pipelines.service";
+import {PipelineNode} from "../../graphQL/get-projects-and-pipelines.service";
 import {environment} from "../../../../../environments/environment";
 
 @Component({
