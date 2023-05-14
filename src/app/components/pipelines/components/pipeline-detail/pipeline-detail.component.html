@@ -8,7 +8,7 @@
             </div>
             <div class="tw-flex tw-items-center">
                 <img src="assets/gitlab/clock.svg" alt="clock" class="tw-me-2"/>
-                <span>{{pipeline.duration}} s</span>
+                <span>{{pipeline.duration ? pipeline.duration + 's' : 'N/A'}}</span>
             </div>
             <div class="tw-flex tw-items-center">
                 <img src="assets/gitlab/calendar.svg" alt="clock" class="tw-me-2"/>
