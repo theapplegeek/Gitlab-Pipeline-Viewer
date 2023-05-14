@@ -1,5 +1,5 @@
 variables:
-  VERSION: 0.1-alpha
+  VERSION: 0.2-alpha
 
 include:
   - template: Jobs/SAST-IaC.gitlab-ci.yml
