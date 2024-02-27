@@ -69,10 +69,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "gitlab-pipeline-viewer:build:production"
+              "buildTarget": "gitlab-pipeline-viewer:build:production"
             },
             "development": {
-              "browserTarget": "gitlab-pipeline-viewer:build:development"
+              "buildTarget": "gitlab-pipeline-viewer:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -80,7 +80,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "gitlab-pipeline-viewer:build"
+            "buildTarget": "gitlab-pipeline-viewer:build"
           }
         }
       }

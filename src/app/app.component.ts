@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {OidcSecurityService} from "angular-auth-oidc-client";
+import {LoginResponse, OidcSecurityService} from "angular-auth-oidc-client";
 import {Router, RouterOutlet} from "@angular/router";
 import {NavbarService} from "./shared/services/navbar.service";
 import {CommonModule} from '@angular/common';
@@ -24,7 +24,11 @@ export class AppComponent {
     constructor(public oidcSecurityService: OidcSecurityService,
                 private navbarService: NavbarService,
                 private router: Router) {
-        this.oidcSecurityService.checkAuth().subscribe();
+        this.oidcSecurityService.checkAuth().subscribe(
+            (auth: LoginResponse) => {
+                if (auth.isAuthenticated) this.router.navigate(['/pipeline']);
+            }
+        );
     }
 
     public logout() {

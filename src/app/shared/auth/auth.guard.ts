@@ -7,7 +7,7 @@ import {NavbarService} from "../services/navbar.service";
 @Injectable({
     providedIn: 'root'
 })
-export class AuthGuard  {
+export class AuthGuard {
     constructor(private oidcSecurityService: OidcSecurityService,
                 private navbarService: NavbarService,
                 private router: Router) {
@@ -16,6 +16,7 @@ export class AuthGuard  {
     canActivate(
         route: ActivatedRouteSnapshot,
         state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
+
         return this.oidcSecurityService.isAuthenticated().pipe(
             map((isAuthenticated: boolean) => {
                 if (!isAuthenticated && state.url.includes("?code=")){
