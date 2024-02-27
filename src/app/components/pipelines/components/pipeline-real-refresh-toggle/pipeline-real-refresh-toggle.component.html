@@ -1,8 +1,12 @@
-<div class="tw-flex tw-justify-end tw-mt-5">
-    <p-toggleButton class="tw-w-full @3xl/main:tw-w-auto" styleClass="tw-w-full"
-                    [ngModel]="pipelinesService.reloadPipelineStatus()"
-                    (onChange)="pipelinesService.reloadPipelineStatus.set($event.checked!)"
-                    onLabel="Realtime reload ON" offLabel="Realtime reload OFF"
-                    onIcon="pi pi-sync" offIcon="pi pi-times" tooltipPosition="left" [showDelay]="2000"
-                    pTooltip="If enabled it will reload pipelines automaticly every 5 seconds"></p-toggleButton>
-</div>
+@if (pipelinesService.firstLoad()) {
+    <div class="tw-flex tw-justify-end tw-my-6">
+        <p-inputSwitch class="tw-flex tw-self-center"
+                       pTooltip="If enabled it will reload pipelines automaticly every 5 seconds"
+                       tooltipPosition="bottom"
+                       [positionTop]="5"
+                       [showDelay]="1000"
+                       [ngModel]="pipelinesService.reloadPipelineStatus()"
+                       (onChange)="pipelinesService.reloadPipelineStatus.set($event.checked!)"></p-inputSwitch>
+        <span class="tw-ml-2 tw-self-center">Realtime reload</span>
+    </div>
+}

@@ -4,11 +4,12 @@ import {PipelinesService} from "../../services/pipelines.service";
 import {ToggleButtonModule} from "primeng/togglebutton";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {TooltipModule} from "primeng/tooltip";
+import {InputSwitchModule} from "primeng/inputswitch";
 
 @Component({
     selector: 'app-pipeline-real-refresh-toggle',
     standalone: true,
-    imports: [CommonModule, ToggleButtonModule, FormsModule, ReactiveFormsModule, TooltipModule],
+    imports: [CommonModule, ToggleButtonModule, FormsModule, ReactiveFormsModule, TooltipModule, InputSwitchModule],
     templateUrl: './pipeline-real-refresh-toggle.component.html',
     styleUrls: ['./pipeline-real-refresh-toggle.component.scss']
 })

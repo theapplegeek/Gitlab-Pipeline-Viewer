@@ -1,4 +1,4 @@
-<div class="tw-mt-5 tw-mb-5">
+<div class="tw-mb-5">
     <div *ngIf="pipelineService.isLoading()">
         <p-skeleton *ngFor="let i of [1,1,1,1,1]" height="4.125rem" width="100%" styleClass="tw-mb-3"></p-skeleton>
     </div>
@@ -29,13 +29,13 @@
         </p-accordionTab>
     </p-accordion>
 </div>
-<div class="tw-flex-grow tw-my-5" *ngIf="pipelineService.projects().length == 0 && !pipelineService.isLoading() && pipelineService.firstLoad()">
+<div class="tw-flex-grow tw-mb-5" *ngIf="pipelineService.projects().length == 0 && !pipelineService.isLoading() && pipelineService.firstLoad()">
     <div class="tw-flex tw-justify-center tw-items-center tw-flex-col tw-h-full">
         <img src="assets/gitlab/empty-projects.svg" alt="Empty projects icon"/>
         <p class="tw-text-gray-200 tw-mt-5">There are no projects available to be displayed here.</p>
     </div>
 </div>
-<div class="tw-flex-grow tw-my-5" *ngIf="pipelineService.projects().length == 0 && !pipelineService.isLoading() && !pipelineService.firstLoad()">
+<div class="tw-flex-grow tw-my-10" *ngIf="pipelineService.projects().length == 0 && !pipelineService.isLoading() && !pipelineService.firstLoad()">
     <div class="tw-flex tw-justify-center tw-items-center tw-flex-col tw-h-full">
         <img src="assets/gitlab/search.svg" width="144" height="144" alt="Search icon"/>
         <p class="tw-text-gray-200 tw-mt-5">Use the search bar to find a projects.</p>
