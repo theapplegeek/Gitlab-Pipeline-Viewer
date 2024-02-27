@@ -1,43 +1,54 @@
 <div class="tw-mb-5">
-    <div *ngIf="pipelineService.isLoading()">
-        <p-skeleton *ngFor="let i of [1,1,1,1,1]" height="4.125rem" width="100%" styleClass="tw-mb-3"></p-skeleton>
-    </div>
-    <p-accordion [multiple]="true" *ngIf="pipelineService.projects().length > 0 && !pipelineService.isLoading()">
-        <p-accordionTab class="tw-mb-3" *ngFor="let project of pipelineService.projects()"
-                        [selected]="pipelineService.getPipelineStateFromId(project.id)"
-                        (selectedChange)="pipelineService.setPipelineStateFromId(project.id, $event)">
-            <ng-template pTemplate="header">
-                <span class="tw-me-auto tw-flex tw-items-center">
-                    <img class="tw-me-2" src="assets/gitlab/project.svg" alt="Gitlab project icon"/>
-                    <span>{{project.name}}</span>
-                </span>
-                <span class="tw-flex tw-items-center">
-                    <app-pipeline-status-icon class="tw-me-4 tw-flex tw-items-center" [size]="24"
-                                              [status]="project.pipelines.nodes[0].status"/>
-                    <span
-                        class="tw-hidden @3xl/main:tw-inline">Last update: {{project.lastActivityAt | date: 'dd/MM/yyyy mm:hh'}}
-                    </span>
-                </span>
-            </ng-template>
-            <ng-template pTemplate="content">
-                <app-pipeline-detail
-                    *ngFor="let pipeline of project.pipelines.nodes, let i = index"
-                    [pipeline]="pipeline"
-                    [showDivider]="i < project.pipelines.nodes.length - 1"
-                />
-            </ng-template>
-        </p-accordionTab>
-    </p-accordion>
+    @if (pipelineService.isLoading()) {
+        @for (i of [1, 2, 3, 4, 5]; track i) {
+            <p-skeleton height="4.125rem" width="100%" styleClass="tw-mb-3"></p-skeleton>
+        }
+    }
+    @if (pipelineService.projects().length > 0 && !pipelineService.isLoading()) {
+        <p-accordion [multiple]="true">
+            @for (project of pipelineService.projects(); track project.id) {
+                <p-accordionTab class="tw-mb-3"
+                                [selected]="pipelineService.getPipelineStateFromId(project.id)"
+                                (selectedChange)="pipelineService.setPipelineStateFromId(project.id, $event)">
+                    <ng-template pTemplate="header">
+                        <span class="tw-me-auto tw-flex tw-items-center">
+                            <img class="tw-me-2" src="assets/gitlab/project.svg" alt="Gitlab project icon"/>
+                            <span>{{ project.name }}</span>
+                        </span>
+                        <span class="tw-flex tw-items-center">
+                            <app-pipeline-status-icon class="tw-me-4 tw-flex tw-items-center" [size]="24"
+                                                      [status]="project.pipelines.nodes[0].status"/>
+                            <span class="tw-hidden @3xl/main:tw-inline">
+                                Last update: {{ project.lastActivityAt | date: 'dd/MM/yyyy mm:hh' }}
+                            </span>
+                        </span>
+                    </ng-template>
+                    <ng-template pTemplate="content">
+                        @for (pipeline of project.pipelines.nodes; track pipeline.path) {
+                            <app-pipeline-detail
+                                    [pipeline]="pipeline"
+                                    [showDivider]="$index < project.pipelines.nodes.length - 1"
+                            />
+                        }
+                    </ng-template>
+                </p-accordionTab>
+            }
+        </p-accordion>
+    }
 </div>
-<div class="tw-flex-grow tw-mb-5" *ngIf="pipelineService.projects().length == 0 && !pipelineService.isLoading() && pipelineService.firstLoad()">
-    <div class="tw-flex tw-justify-center tw-items-center tw-flex-col tw-h-full">
-        <img src="assets/gitlab/empty-projects.svg" alt="Empty projects icon"/>
-        <p class="tw-text-gray-200 tw-mt-5">There are no projects available to be displayed here.</p>
+@if (pipelineService.projects().length == 0 && !pipelineService.isLoading() && pipelineService.firstLoad()) {
+    <div class="tw-flex-grow tw-mb-5">
+        <div class="tw-flex tw-justify-center tw-items-center tw-flex-col tw-h-full">
+            <img src="assets/gitlab/empty-projects.svg" alt="Empty projects icon"/>
+            <p class="tw-text-gray-200 tw-mt-5">There are no projects available to be displayed here.</p>
+        </div>
     </div>
-</div>
-<div class="tw-flex-grow tw-my-10" *ngIf="pipelineService.projects().length == 0 && !pipelineService.isLoading() && !pipelineService.firstLoad()">
-    <div class="tw-flex tw-justify-center tw-items-center tw-flex-col tw-h-full">
-        <img src="assets/gitlab/search.svg" width="144" height="144" alt="Search icon"/>
-        <p class="tw-text-gray-200 tw-mt-5">Use the search bar to find a projects.</p>
+}
+@if (pipelineService.projects().length == 0 && !pipelineService.isLoading() && !pipelineService.firstLoad()) {
+    <div class="tw-flex-grow tw-my-10">
+        <div class="tw-flex tw-justify-center tw-items-center tw-flex-col tw-h-full">
+            <img src="assets/gitlab/search.svg" width="144" height="144" alt="Search icon"/>
+            <p class="tw-text-gray-200 tw-mt-5">Use the search bar to find a projects.</p>
+        </div>
     </div>
-</div>
+}
