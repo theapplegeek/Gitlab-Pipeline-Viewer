@@ -14,11 +14,11 @@ interface PipelineTabsState {
     providedIn: 'root'
 })
 export class PipelinesService {
-
     public isLoading = signal<boolean>(false);
     public projects = signal<ProjectNode[]>([]);
     public selectedStatus = signal<PipelineStatusEnum | undefined>(undefined);
     public search = signal<string>("");
+    public firstLoad = signal<boolean>(false);
 
     public reloadPipelineStatus = signal<boolean>(false);
     private timer: any;
@@ -31,11 +31,12 @@ export class PipelinesService {
 
     public searchPipelines(search: string, status?: PipelineStatusEnum) {
         this.isLoading.set(true);
+        this.firstLoad.set(true);
         this.search.set(search);
         this.selectedStatus.set(status);
-        this.reloadPipelineStatus.set(false);
+        this.reloadPipelineStatus.set(true);
         this.getProjectsAndPipelines(() => {
-            this.pipelineTabsState.update((oldValue: PipelineTabsState[]) => {
+            this.pipelineTabsState.update(() => {
                 return this.projects().map((project) => {
                     return {
                         id: project.id,

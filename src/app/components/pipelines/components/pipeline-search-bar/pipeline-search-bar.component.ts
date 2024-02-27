@@ -28,7 +28,7 @@ export class PipelineSearchBarComponent {
     public search: string = "";
 
     constructor(public pipelineService: PipelinesService) {
-        this.pipelineService.searchPipelines(this.search, this.selectedStatus);
+        // this.pipelineService.searchPipelines(this.search, this.selectedStatus);
     }
 
     public searchPipelines(): void {
