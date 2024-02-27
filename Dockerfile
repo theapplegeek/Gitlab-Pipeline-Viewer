@@ -2,11 +2,12 @@ FROM node:21.6.2-alpine as build
 ARG CLIENT_ID
 WORKDIR /app
 COPY package.json .
-COPY package-lock.json .
-RUN npm install
+COPY pnpm-lock.yaml .
+RUN npm install -g pnpm
+RUN pnpm install
 COPY . .
 RUN sed -i "s/clientId:.*/clientId: '$CLIENT_ID',/" /app/src/environments/environment.ts
-RUN npm run build
+RUN pnpm build
 
 FROM nginx:1.21.5-alpine
 COPY nginx-default.conf /etc/nginx/conf.d/default.conf
