@@ -12,7 +12,6 @@ import {
     selector: 'app-pipeline-detail',
     templateUrl: './pipeline-detail.component.html',
     styleUrls: ['./pipeline-detail.component.scss'],
-    standalone: true,
     imports: [CommonModule, ButtonModule, DividerModule, PipelineStatusIconComponent]
 })
 export class PipelineDetailComponent {

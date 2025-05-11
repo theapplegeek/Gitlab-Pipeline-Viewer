@@ -8,7 +8,6 @@ import {InputSwitchModule} from "primeng/inputswitch";
 
 @Component({
     selector: 'app-pipeline-real-refresh-toggle',
-    standalone: true,
     imports: [CommonModule, ToggleButtonModule, FormsModule, ReactiveFormsModule, TooltipModule, InputSwitchModule],
     templateUrl: './pipeline-real-refresh-toggle.component.html',
     styleUrls: ['./pipeline-real-refresh-toggle.component.scss']

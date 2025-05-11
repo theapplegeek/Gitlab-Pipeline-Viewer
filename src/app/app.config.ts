@@ -7,17 +7,29 @@ import {provideAnimations} from "@angular/platform-browser/animations";
 import {HTTP_INTERCEPTORS, provideHttpClient} from "@angular/common/http";
 import {AuthInterceptor} from "./shared/auth/auth.interceptor";
 import {AuthConfigModule} from "./shared/auth/auth-config.module";
-import {APOLLO_OPTIONS, ApolloModule} from "apollo-angular";
-import {HttpLink} from "apollo-angular/http";
+import {provideApollo} from "apollo-angular";
 import {createApollo} from "./shared/configs/graphql.config";
+import {providePrimeNG} from "primeng/config";
+import DefaultPreset from "./shared/configs/primeng-theme.config";
 
 export const appConfig: ApplicationConfig = {
     providers: [
         provideRouter(routes),
-        importProvidersFrom(BrowserModule, ApolloModule, AuthConfigModule),
+        importProvidersFrom(BrowserModule, AuthConfigModule),
         provideHttpClient(),
         provideAnimations(),
+        providePrimeNG({
+            ripple: true,
+            theme: {
+                preset: DefaultPreset,
+                options: {
+                    prefix: 'p',
+                    darkModeSelector: '.dark-mode',
+                    cssLayer: false
+                }
+            }
+        }),
+        provideApollo(createApollo),
         {provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
-        {provide: APOLLO_OPTIONS, useFactory: createApollo, deps: [HttpLink]},
     ]
 };

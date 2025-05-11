@@ -10,7 +10,6 @@ import {
     selector: 'app-pipelines',
     templateUrl: './pipelines.component.html',
     styleUrls: ['./pipelines.component.scss'],
-    standalone: true,
     imports: [CommonModule, PipelineListComponent, PipelineSearchBarComponent, PipelineRealRefreshToggleComponent]
 })
 export class PipelinesComponent {

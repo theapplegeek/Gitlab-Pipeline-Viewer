@@ -10,7 +10,6 @@ import {CommonModule} from "@angular/common";
     selector: 'app-login',
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.scss'],
-    standalone: true,
     imports: [CommonModule, CardModule, ButtonModule]
 })
 export class LoginComponent {

@@ -12,11 +12,9 @@ import {DividerModule} from "primeng/divider";
     selector: 'app-root',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.scss'],
-    standalone: true,
     imports: [CommonModule, RouterOutlet, ButtonModule, OverlayPanelModule, AvatarModule, DividerModule]
 })
 export class AppComponent {
-
     public get navbarVisible(): boolean {
         return this.navbarService.navbarVisibility();
     }

@@ -1,24 +1,23 @@
 <div class="tw-grid tw-grid-cols-8">
-    <span (keyup.enter)="searchPipelines()"
-          class="tw-col-span-8 @3xl/main:tw-col-span-5
-                 tw-me-0 @3xl/main:tw-me-2
-                 tw-mb-6 @3xl/main:tw-mb-0
-                 p-float-label p-input-icon-left">
-        <i class="pi pi-search"></i>
-        <input class="tw-w-full" pInputText id="search" [(ngModel)]="search"/>
-        <label htmlFor="search">Project name or group name</label>
-    </span>
-    <span class="tw-me-0 @3xl/main:tw-me-2
-                     tw-col-span-8 @3xl/main:tw-col-span-2
-                     tw-mb-6 @3xl/main:tw-mb-0
-                     p-float-label">
-        <p-dropdown styleClass="tw-w-full" [options]="statusList" [(ngModel)]="selectedStatus"
-                    id="status-select" placeholder="Select status" [showClear]="true"
-                    inputId="status-select"/>
+    <p-inputgroup class="tw-col-span-8 @3xl/main:tw-col-span-5 tw-mb-6 @3xl/main:tw-mb-0">
+        <p-inputgroup-addon>
+            <i class="pi pi-search"></i>
+        </p-inputgroup-addon>
+        <p-floatlabel (keyup.enter)="searchPipelines()"
+                      class="tw-w-full tw-me-0 @3xl/main:tw-me-2">
+            <input class="tw-w-full" pInputText id="search" [(ngModel)]="search"/>
+            <label htmlFor="search">Project name or group name</label>
+        </p-floatlabel>
+    </p-inputgroup>
+    <p-floatlabel class="tw-me-0 tw-mb-6 @3xl/main:tw-me-2 @3xl/main:tw-mb-0
+                     tw-col-span-8 @3xl/main:tw-col-span-2">
+        <p-select styleClass="tw-w-full tw-h-full" [options]="statusList" [(ngModel)]="selectedStatus"
+                  id="status-select" [showClear]="true"
+                  inputId="status-select" />
         <label for="status-select">Pipeline status</label>
-    </span>
-    <span class="tw-col-span-8 @3xl/main:tw-col-span-1">
+    </p-floatlabel>
+    <span class="tw-col-span-8 @3xl/main:tw-col-span-1 tw-mb-0">
         <p-button styleClass="tw-w-full" icon="pi pi-search" label="Search"
-                (click)="searchPipelines()"></p-button>
+                  (click)="searchPipelines()"></p-button>
     </span>
 </div>
