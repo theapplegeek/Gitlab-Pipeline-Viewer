@@ -4,6 +4,7 @@ import {
     PipelineStatusEnum,
     ProjectNode
 } from "../graphQL/get-projects-and-pipelines.service";
+import {AccordionTabOpenEvent} from "primeng/accordion";
 
 interface PipelineTabsState {
     id: string;
@@ -86,14 +87,16 @@ export class PipelinesService {
             });
     }
 
-    public getPipelineStateFromId(id: string): boolean {
-        return this.pipelineTabsState().find((value) => value.id === id)?.state || false;
+    public getActivePipelines(): string[] {
+        return this.pipelineTabsState()
+            .filter((value) => value.state)
+            .map((value) => value.id);
     }
 
-    public setPipelineStateFromId(id: string, state: boolean) {
+    public setPipelineStateFromId(event: AccordionTabOpenEvent, state: boolean) {
         this.pipelineTabsState.update((oldValue: PipelineTabsState[]) => {
             return oldValue.map((value) => {
-                if (value.id === id) {
+                if (value.id === (event.index as unknown as string)) {
                     value.state = state;
                 }
                 return value;

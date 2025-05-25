@@ -1,3 +1,7 @@
-::ng-deep .p-accordion-tab {
-  margin-bottom: 0.75rem !important;
+::ng-deep .p-accordioncontent-content {
+    border-top: 1px !important;
+    border-right: 1px !important;
+    border-left: 1px !important;
+    border-color: #3f3f46 !important;
+    border-style: solid !important;
 }

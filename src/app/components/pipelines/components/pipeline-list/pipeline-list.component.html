@@ -5,33 +5,35 @@
         }
     }
     @if (pipelineService.projects().length > 0 && !pipelineService.isLoading()) {
-        <p-accordion [multiple]="true">
+        <p-accordion [multiple]="true" [value]="pipelineService.getActivePipelines()"
+                     (onOpen)="pipelineService.setPipelineStateFromId($event, true)"
+                     (onClose)="pipelineService.setPipelineStateFromId($event, false)">
             @for (project of pipelineService.projects(); track project.id) {
-                <p-accordionTab class="tw-mb-3"
-                                [selected]="pipelineService.getPipelineStateFromId(project.id)"
-                                (selectedChange)="pipelineService.setPipelineStateFromId(project.id, $event)">
-                    <ng-template pTemplate="header">
+                <p-accordion-panel class="tw-mb-3" [value]="project.id">
+                    <p-accordion-header class="!tw-border-t !tw-border-s !tw-border-e !tw-border-[#3f3f46]">
                         <span class="tw-me-auto tw-flex tw-items-center">
                             <img class="tw-me-2" src="assets/gitlab/project.svg" alt="Gitlab project icon"/>
                             <span>{{ project.name }}</span>
                         </span>
-                        <span class="tw-flex tw-items-center">
+                        <span class="tw-flex tw-items-center tw-pe-2">
                             <app-pipeline-status-icon class="tw-me-4 tw-flex tw-items-center" [size]="24"
                                                       [status]="project.pipelines.nodes[0].status"/>
                             <span class="tw-hidden @3xl/main:tw-inline">
                                 Last update: {{ project.lastActivityAt | date: 'dd/MM/yyyy mm:hh' }}
                             </span>
                         </span>
-                    </ng-template>
-                    <ng-template pTemplate="content">
-                        @for (pipeline of project.pipelines.nodes; track pipeline.path) {
-                            <app-pipeline-detail
+                    </p-accordion-header>
+                    <p-accordion-content>
+                        <div class="tw-pt-4">
+                            @for (pipeline of project.pipelines.nodes; track pipeline.path) {
+                                <app-pipeline-detail
                                     [pipeline]="pipeline"
                                     [showDivider]="$index < project.pipelines.nodes.length - 1"
-                            />
-                        }
-                    </ng-template>
-                </p-accordionTab>
+                                />
+                            }
+                        </div>
+                    </p-accordion-content>
+                </p-accordion-panel>
             }
         </p-accordion>
     }
