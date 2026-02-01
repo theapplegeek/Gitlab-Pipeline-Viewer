@@ -1,7 +1,21 @@
-::ng-deep #status-select.p-select-label.ng-star-inserted {
-    //background-color: red !important;
-    //display: flex;
-    //align-items: center;
-    //height: 100%;
-    //line-height: normal;
+:host ::ng-deep #status-select.p-select-label.ng-star-inserted {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    line-height: normal;
+}
+
+:host ::ng-deep #status-select_list > p-selectitem > li {
+    display: flex;
+    align-items: center;
+    padding: 0 !important;
+}
+
+:host ::ng-deep #status-select_list > p-selectitem > li > span {
+    display: inline-flex;
+    align-items: center;
+    height: 2rem;
+    padding: 0 .75rem;
+    line-height: normal;
+    border-radius: .375rem;
 }
