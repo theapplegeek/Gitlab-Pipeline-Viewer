@@ -18,5 +18,5 @@ RUN chown -R nginx:nginx /var/cache/nginx && \
         chown -R nginx:nginx /usr/share/nginx
 RUN touch /var/run/nginx.pid && chown -R nginx:nginx /var/run/nginx.pid
 USER nginx
-COPY --from=build /app/dist/**/ /usr/share/nginx/html
+COPY --from=build /app/dist/**/browser/ /usr/share/nginx/html
 EXPOSE 80
