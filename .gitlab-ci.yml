@@ -9,12 +9,13 @@ include:
 stages:
   - test
   - build
+  - deploy
 
 build:
   stage: build
   image: docker:29-cli
   services:
-      - docker:29-dind
+    - docker:29-dind
   before_script:
     - echo $DOCKER_HUB_PASSWORD | docker login -u $DOCKER_HUB_USER --password-stdin
   script:
@@ -22,5 +23,46 @@ build:
     - docker push $DOCKER_HUB_REGISTRY:$VERSION
     - docker tag $DOCKER_HUB_REGISTRY:$VERSION $DOCKER_HUB_REGISTRY:latest
     - docker push $DOCKER_HUB_REGISTRY:latest
+  rules:
+    - if: $CI_COMMIT_BRANCH == "main"
+
+deploy:
+  stage: deploy
+  image: alpine:latest
+  before_script:
+    - apk add --no-cache curl
+  script:
+    - |
+      escaped_message=$(printf '%s' "$CI_COMMIT_MESSAGE" | sed ':a;N;$!ba;s/"/\\"/g;s/\n/\\n/g')
+
+      BODY=$(printf '{
+        "object_kind": "push",
+        "ref": "refs/heads/main",
+        "checkout_sha": "%s",
+        "commits": [
+          { "message": "%s" }
+        ]
+      }' "$CI_COMMIT_SHA" "$escaped_message")
+
+      RESPONSE=$(curl --silent --show-error \
+        --write-out "HTTPSTATUS:%{http_code}" \
+        -X POST "$WEBHOOK_URL" \
+        -H "Content-Type: application/json" \
+        -H "X-Gitlab-Event: Push Hook" \
+        -d "$BODY")
+
+      HTTP_BODY=$(echo "$RESPONSE" | sed -e 's/HTTPSTATUS:.*//g')
+      HTTP_STATUS=$(echo "$RESPONSE" | tr -d '\n' | sed -e 's/.*HTTPSTATUS://')
+
+      if [ "$HTTP_STATUS" -lt 200 ] || [ "$HTTP_STATUS" -ge 300 ]; then
+        echo "HTTP request failed with status $HTTP_STATUS"
+        echo "Response body:"
+        echo "$HTTP_BODY"
+        exit 1
+      fi
+
+      echo "Deployment successful!"
+      echo "Response body:"
+      echo "$HTTP_BODY"
   rules:
     - if: $CI_COMMIT_BRANCH == "main"
